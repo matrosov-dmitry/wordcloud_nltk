@@ -36,18 +36,11 @@ for word in word_no_punc:
     if word not in stopwords_list:
         clean_words.append(word)
 
-snowball = SnowballStemmer(language='russian')
-
-stem_words = []
-
-for word in clean_words:
-    stem_words.append(snowball.stem(word))
-
 morph = pymorphy2.MorphAnalyzer()
 
 lemm_words = []
 
-for word in stem_words:
+for word in clean_words:
     lemm_words.append(morph.parse(word)[0].normal_form)
 
 word_to_cloud = " ".join(lemm_words)
